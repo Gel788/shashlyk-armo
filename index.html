@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шашлык Армо — Настоящий армянский шашлык с 2012</title>
+  <meta name="description" content="Шашлык Армо — настоящий армянский шашлык на живом огне. Доставка по звонку. Работаем с 2012 года." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-fire">
+        <div class="pl-flame pl-flame--1"></div>
+        <div class="pl-flame pl-flame--2"></div>
+        <div class="pl-flame pl-flame--3"></div>
+        <div class="pl-ember-field" id="plEmbers"></div>
+      </div>
+      <div class="preloader-logo">
+        <span>АРМО</span>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill" id="preloaderFill"></div>
+      </div>
+      <p class="preloader-text">Разжигаем мангал...</p>
+    </div>
+  </div>
+
+  <!-- ===== ПРОМО БАННЕР ===== -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="promo-banner-inner">
+      <span class="promo-dot"></span>
+      <span>🔥 АКЦИЯ 2026: Бесплатная доставка при заказе от 1500 ₽ — звоните прямо сейчас!</span>
+      <span class="promo-dot"></span>
+      <span>🥩 Новинка: Шашлык из дикого кабана — только по предварительному заказу</span>
+      <span class="promo-dot"></span>
+      <span>🔥 АКЦИЯ 2026: Бесплатная доставка при заказе от 1500 ₽ — звоните прямо сейчас!</span>
+      <span class="promo-dot"></span>
+      <span>🥩 Новинка: Шашлык из дикого кабана — только по предварительному заказу</span>
+    </div>
+    <button class="promo-close" onclick="document.getElementById('promoBanner').style.display='none'" aria-label="Закрыть">×</button>
+  </div>
+
+  <!-- ===== НАВИГАЦИЯ ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-emblem">
+          <div class="logo-fire-wrap">
+            <span class="logo-flame-icon">🔥</span>
+          </div>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-text">АРМО</span>
+          <span class="logo-sub">ШАШЛЫК</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu">Меню</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a href="tel:+79991234567" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Заказать звонок
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#menu">Меню</a>
+      <a href="#about">О нас</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <a href="tel:+79991234567" class="mobile-cta">📞 +7 (999) 123-45-67</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-video-overlay"></div>
+      <div class="ember-field" id="emberField"></div>
+      <div class="hero-noise"></div>
+      <div class="hero-vignette"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-flag">🇦🇲</div>
+        <span>Традиционные армянские рецепты с 2012</span>
+        <div class="eyebrow-live">
+          <span class="live-dot"></span>
+          Живой огонь
+        </div>
+      </div>
+      <h1 class="hero-title">
+        Шашлык,<br/>
+        <em>который<br/>помнят</em>
+      </h1>
+      <p class="hero-subtitle">
+        Сочное мясо на мангале, маринованное по тайным армянским рецептам.
+        Каждый кусок — огонь, дым и душа Кавказа.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">
+          Смотреть меню
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+79991234567" class="btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Заказать доставку
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" data-target="14" data-suffix="+">0+</span>
+          <span class="stat-label">Лет традиций</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="40" data-suffix="+">0+</span>
+          <span class="stat-label">Блюд в меню</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="15" data-suffix="к+">0к+</span>
+          <span class="stat-label">Гостей в 2026</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="4.9" data-suffix="★">0★</span>
+          <span class="stat-label">Рейтинг</span>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Листай</span>
+    </a>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="fire-divider">
+    <div class="fire-divider-inner">
+      <div class="fd-flame" style="--h:60px;--d:0s;--l:10%"></div>
+      <div class="fd-flame" style="--h:80px;--d:0.3s;--l:20%"></div>
+      <div class="fd-flame" style="--h:50px;--d:0.1s;--l:30%"></div>
+      <div class="fd-flame" style="--h:90px;--d:0.5s;--l:40%"></div>
+      <div class="fd-flame" style="--h:70px;--d:0.2s;--l:50%"></div>
+      <div class="fd-flame" style="--h:85px;--d:0.4s;--l:60%"></div>
+      <div class="fd-flame" style="--h:55px;--d:0.15s;--l:70%"></div>
+      <div class="fd-flame" style="--h:75px;--d:0.35s;--l:80%"></div>
+      <div class="fd-flame" style="--h:65px;--d:0.25s;--l:90%"></div>
+      <div class="fd-glow"></div>
+    </div>
+  </div>
+
+  <!-- ===== О НАС ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-aos>
+          <div class="about-img-stack">
+            <div class="about-img-bg"></div>
+            <div class="about-img-main" style="background-image: url('https://images.unsplash.com/photo-1558030006-450675393462?w=700&q=85')"></div>
+            <div class="about-img-accent" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=450&q=85')"></div>
+            <div class="about-gold-badge">
+              <div class="gold-badge-inner">
+                <span class="gold-badge-icon">🏆</span>
+                <strong>Лучший шашлык</strong>
+                <span>города 2026</span>
+              </div>
+            </div>
+            <div class="about-years-badge">
+              <span class="years-num">14</span>
+              <span class="years-text">лет<br/>традиций</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text" data-aos>
+          <div class="section-tag">Наша история</div>
+          <h2 class="section-title">Традиции армянского<br/><em>застолья</em></h2>
+          <p class="about-desc">
+            Армо — это не просто ресторан. Это место, где каждый гость становится частью большой армянской семьи.
+            Наши рецепты берут начало из горных районов Армении и передаются уже третьему поколению.
+          </p>
+          <p class="about-desc">
+            Только свежее мясо от проверенных фермеров. Маринад минимум 24 часа.
+            Живые угли из фруктовых деревьев. Никаких компромиссов — только огонь и мастерство.
+          </p>
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon">🔥</div>
+              <div class="feature-body">
+                <strong>Живой огонь</strong>
+                <span>Угли из яблони и вишни для идеального аромата</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🌿</div>
+              <div class="feature-body">
+                <strong>Специи из Армении</strong>
+                <span>Привозим напрямую от горных фермеров</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🥩</div>
+              <div class="feature-body">
+                <strong>Отборное мясо</strong>
+                <span>Фермерское, охлаждённое, никогда замороженное</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">⏰</div>
+              <div class="feature-body">
+                <strong>Маринад 24+ часов</strong>
+                <span>Секретный рецепт, который делает мясо нежным</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== МЕНЮ ===== -->
+  <section class="menu" id="menu">
+    <div class="menu-bg-pattern"></div>
+    <div class="container">
+      <div class="section-header" data-aos>
+        <div class="section-tag">Наше меню</div>
+        <h2 class="section-title">Выбери своё<br/><em>блюдо</em></h2>
+        <p class="section-subtitle">Каждое блюдо готовится свежим на заказ. Без полуфабрикатов. Только огонь и мастерство.</p>
+      </div>
+
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-tab="grill">
+          <span class="tab-icon">🔥</span> Шашлыки
+        </button>
+        <button class="tab-btn" data-tab="salads">
+          <span class="tab-icon">🥗</span> Закуски
+        </button>
+        <button class="tab-btn" data-tab="bread">
+          <span class="tab-icon">🫓</span> Хлеб & Соусы
+        </button>
+        <button class="tab-btn" data-tab="drinks">
+          <span class="tab-icon">🍷</span> Напитки
+        </button>
+      </div>
+
+      <!-- Шашлыки -->
+      <div class="menu-grid active" id="tab-grill">
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=85')"></div>
+            <div class="card-badge popular">🔥 Хит</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Шашлык из свинины</h3>
+              <span class="card-price">от 350 ₽</span>
+            </div>
+            <p class="card-desc">Нежная шея, маринованная в луке, гранатовом соке и пряностях. Классика вне времени.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 25 мин</span>
+              <span>🍖 200 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=500&q=85')"></div>
+            <div class="card-badge new">✨ Топ 2026</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Шашлык из ягнёнка</h3>
+              <span class="card-price">от 520 ₽</span>
+            </div>
+            <p class="card-desc">Молодой ягнёнок с тимьяном и зирой. Настоящий армянский вкус с горных пастбищ.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 30 мин</span>
+              <span>🍖 200 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1432139509613-5c4255815697?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Шашлык из говядины</h3>
+              <span class="card-price">от 450 ₽</span>
+            </div>
+            <p class="card-desc">Мраморная говядина, маринованная с гранатом и кавказскими травами.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 30 мин</span>
+              <span>🍖 200 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=85')"></div>
+            <div class="card-badge popular">🔥 Хит</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Люля-кебаб</h3>
+              <span class="card-price">от 320 ₽</span>
+            </div>
+            <p class="card-desc">Рубленый фарш с луком и зеленью на широком шампуре. Сочный и ароматный.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 20 мин</span>
+              <span>🍖 200 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Шашлык из курицы</h3>
+              <span class="card-price">от 290 ₽</span>
+            </div>
+            <p class="card-desc">Куриное филе в йогуртовом маринаде с чесноком и копчёной паприкой.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 20 мин</span>
+              <span>🍗 250 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+
+        <div class="menu-card menu-card--wild" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1571167530149-c1105da4b1f4?w=500&q=85')"></div>
+            <div class="card-badge exclusive">🐗 Эксклюзив</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Шашлык из кабана</h3>
+              <span class="card-price">от 750 ₽</span>
+            </div>
+            <p class="card-desc">Мясо дикого кабана, маринованное 48 часов. Только по предзаказу — звонок за сутки.</p>
+            <div class="card-meta">
+              <span>🌡️ Горячее</span>
+              <span>⏱ 40 мин</span>
+              <span>🍖 200 г</span>
+            </div>
+            <button class="card-btn" onclick="callOrder()">Предзаказ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Закуски -->
+      <div class="menu-grid" id="tab-salads">
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Армянский салат</h3><span class="card-price">280 ₽</span></div>
+            <p class="card-desc">Помидоры, огурцы, перец, зелень с оливковым маслом и зёрнами граната.</p>
+            <div class="card-meta"><span>🥗 Холодное</span><span>⏱ 5 мин</span><span>🥬 250 г</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1572448862527-d3c904757de6?w=500&q=85')"></div>
+            <div class="card-badge popular">🔥 Хит</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Долма</h3><span class="card-price">380 ₽</span></div>
+            <p class="card-desc">Виноградные листья с рисом и бараниной. Классическое армянское блюдо.</p>
+            <div class="card-meta"><span>🌡️ Горячее</span><span>⏱ 15 мин</span><span>🫙 6 шт</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Хумус с питой</h3><span class="card-price">230 ₽</span></div>
+            <p class="card-desc">Нежный хумус из нута с тахини, оливковым маслом и паприкой.</p>
+            <div class="card-meta"><span>🥗 Холодное</span><span>⏱ 5 мин</span><span>🫙 200 г</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Хлеб и соусы -->
+      <div class="menu-grid" id="tab-bread">
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Лаваш свежий</h3><span class="card-price">80 ₽</span></div>
+            <p class="card-desc">Тонкий армянский лаваш, выпекаемый в тандыре прямо у вас на глазах.</p>
+            <div class="card-meta"><span>🫓 Хлеб</span><span>⏱ 10 мин</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Соус ткемали</h3><span class="card-price">120 ₽</span></div>
+            <p class="card-desc">Кисло-сладкий соус из сливы с пряными травами. Идеален к мясу.</p>
+            <div class="card-meta"><span>🫙 Соус</span><span>⏱ Сразу</span><span>🥄 100 г</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Напитки -->
+      <div class="menu-grid" id="tab-drinks">
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=500&q=85')"></div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Домашний лимонад</h3><span class="card-price">180 ₽</span></div>
+            <p class="card-desc">Освежающий лимонад с мятой, базиликом или тархуном. Без консервантов.</p>
+            <div class="card-meta"><span>🥤 Напиток</span><span>⏱ Сразу</span><span>🫙 500 мл</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+        <div class="menu-card" data-aos>
+          <div class="card-img-wrap">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=85')"></div>
+            <div class="card-badge exclusive">🇦🇲 Армения</div>
+            <div class="card-img-shine"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-header"><h3>Коньяк Арарат</h3><span class="card-price">от 350 ₽</span></div>
+            <p class="card-desc">Настоящий армянский коньяк Арарат. Символ Армении в каждом глотке.</p>
+            <div class="card-meta"><span>🥃 Алкоголь</span><span>⏱ Сразу</span><span>🫙 50 мл</span></div>
+            <button class="card-btn" onclick="callOrder()">Заказать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <div class="coal-divider">
+    <div class="coal-glow"></div>
+  </div>
+
+  <!-- ===== ДОСТАВКА ===== -->
+  <section class="delivery" id="delivery">
+    <div class="delivery-bg-mesh"></div>
+    <div class="container">
+      <div class="delivery-grid">
+        <div class="delivery-text" data-aos>
+          <div class="section-tag light">Доставка</div>
+          <h2 class="section-title light">Горячо и вовремя —<br/><em>прямо к вам</em></h2>
+          <p class="delivery-desc">
+            Мы доставляем шашлык прямо с мангала в специальных термоконтейнерах.
+            Вы получаете его горячим и сочным — как будто только что с огня.
+          </p>
+
+          <div class="delivery-steps">
+            <div class="step" data-aos>
+              <div class="step-icon">📞</div>
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <strong>Позвоните нам</strong>
+                <span>Оператор примет заказ и уточнит детали за 2 минуты</span>
+              </div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-aos>
+              <div class="step-icon">🔥</div>
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <strong>Мы готовим</strong>
+                <span>Свежий шашлык прямо на живых углях специально для вас</span>
+              </div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-aos>
+              <div class="step-icon">🛵</div>
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <strong>Быстрая доставка</strong>
+                <span>Курьер привезёт горячим за 40–60 минут</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="delivery-info-cards">
+            <div class="info-card">
+              <span class="info-icon">🕐</span>
+              <strong>12:00 — 23:00</strong>
+              <span>Время доставки</span>
+            </div>
+            <div class="info-card">
+              <span class="info-icon">📍</span>
+              <strong>До 15 км</strong>
+              <span>Зона доставки</span>
+            </div>
+            <div class="info-card">
+              <span class="info-icon">🎁</span>
+              <strong>От 1500 ₽</strong>
+              <span>Бесплатно</span>
+            </div>
+          </div>
+
+          <a href="tel:+79991234567" class="btn-fire">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +7 (999) 123-45-67
+          </a>
+        </div>
+
+        <div class="delivery-visual" data-aos>
+          <div class="phone-mockup">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="phone-screen-bg"></div>
+                <div class="call-ui">
+                  <div class="call-avatar">🔥</div>
+                  <div class="call-ripple">
+                    <div class="ripple r1"></div>
+                    <div class="ripple r2"></div>
+                    <div class="ripple r3"></div>
+                  </div>
+                  <div class="call-name">Шашлык Армо</div>
+                  <div class="call-status">
+                    <span class="blink-dot"></span>Принимаем заказы...
+                  </div>
+                  <div class="call-btns">
+                    <div class="cbtn cbtn--end">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div class="cbtn cbtn--accept">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-side-btn"></div>
+            </div>
+            <div class="phone-shadow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ОТЗЫВЫ ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <div class="section-tag">Отзывы</div>
+        <h2 class="section-title">Что говорят<br/><em>наши гости</em></h2>
+        <p class="section-subtitle">Более 15 000 довольных гостей в 2026 году. Мы гордимся каждым отзывом.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Лучший шашлык в городе без преувеличения! Мясо тает во рту, маринад идеальный. Заказываем каждые выходные уже год.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: linear-gradient(135deg, #ff6b35, #f7c59f)">А</div>
+            <div>
+              <strong>Алексей М.</strong>
+              <span>Постоянный гость</span>
+            </div>
+            <div class="review-platform">2ГИС ★4.9</div>
+          </div>
+        </div>
+        <div class="review-card review-card--featured" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Заказывали на корпоратив 30 человек. Всё приехало горячим, упакованным идеально. Коллеги в восторге! Люля-кебаб — просто огонь 🔥</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: linear-gradient(135deg, #8b5cf6, #c4b5fd)">М</div>
+            <div>
+              <strong>Марина К.</strong>
+              <span>Организатор мероприятий</span>
+            </div>
+            <div class="review-platform">Google ★5.0</div>
+          </div>
+        </div>
+        <div class="review-card" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Настоящий армянский вкус! Долма как у бабушки в Ереване. Атмосфера тёплая, персонал внимательный. Однозначно вернусь.</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: linear-gradient(135deg, #10b981, #6ee7b7)">Н</div>
+            <div>
+              <strong>Наталья В.</strong>
+              <span>Новый гость</span>
+            </div>
+            <div class="review-platform">Яндекс ★5.0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-platforms" data-aos>
+        <div class="platform-badge">
+          <span>⭐</span>
+          <div>
+            <strong>4.9</strong>
+            <span>Google Карты</span>
+          </div>
+        </div>
+        <div class="platform-badge">
+          <span>⭐</span>
+          <div>
+            <strong>4.8</strong>
+            <span>Яндекс</span>
+          </div>
+        </div>
+        <div class="platform-badge">
+          <span>⭐</span>
+          <div>
+            <strong>4.9</strong>
+            <span>2ГИС</span>
+          </div>
+        </div>
+        <div class="platform-badge">
+          <span>⭐</span>
+          <div>
+            <strong>4.7</strong>
+            <span>TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <div class="contacts-grid">
+        <div class="contacts-info" data-aos>
+          <div class="section-tag">Контакты</div>
+          <h2 class="section-title">Где нас<br/><em>найти</em></h2>
+
+          <div class="contact-items">
+            <a href="tel:+79991234567" class="contact-item contact-item--phone">
+              <div class="contact-icon-wrap">
+                <div class="contact-icon">📞</div>
+                <div class="contact-pulse"></div>
+              </div>
+              <div>
+                <strong>Телефон</strong>
+                <span>+7 (999) 123-45-67</span>
+                <small>Ежедневно 10:00 – 23:00</small>
+              </div>
+              <div class="contact-arrow">→</div>
+            </a>
+            <div class="contact-item">
+              <div class="contact-icon-wrap">
+                <div class="contact-icon">📍</div>
+              </div>
+              <div>
+                <strong>Адрес</strong>
+                <span>ул. Кавказская, 42</span>
+                <small>м. Центральная, 5 минут пешком</small>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap">
+                <div class="contact-icon">🕐</div>
+              </div>
+              <div>
+                <strong>Режим работы</strong>
+                <span>Пн–Пт: 12:00 – 23:00</span>
+                <small>Сб–Вс: 11:00 – 00:00</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <p class="social-label">Мы в соцсетях</p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="VK">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 12.96h-1.59c-.6 0-.79-.48-1.87-1.58-.94-.92-1.36-.92-1.59-.92-.32 0-.42.09-.42.53v1.44c0 .38-.12.6-1.11.6-1.64 0-3.46-1-4.74-2.85C5.38 10.14 5 8.35 5 7.97c0-.24.09-.46.53-.46h1.59c.4 0 .55.18.7.6.77 2.22 2.05 4.17 2.58 4.17.2 0 .29-.09.29-.6V9.81c-.06-1.08-.63-1.17-.63-1.55 0-.19.15-.38.4-.38h2.5c.34 0 .46.18.46.57v3.07c0 .34.15.46.24.46.2 0 .37-.12.74-.5 1.15-1.28 1.97-3.26 1.97-3.26.1-.24.3-.46.7-.46h1.59c.48 0 .58.25.48.59-.2.92-2.15 3.69-2.15 3.69-.17.28-.23.4 0 .71.16.22.7.69 1.06 1.11.66.74 1.16 1.36 1.3 1.79.12.41-.1.62-.51.62z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contacts-map" data-aos>
+          <div class="map-card">
+            <div class="map-visual">
+              <div class="map-grid"></div>
+              <div class="map-roads">
+                <div class="road road-h"></div>
+                <div class="road road-v"></div>
+                <div class="road road-d"></div>
+              </div>
+              <div class="map-pin-wrap">
+                <div class="map-pulse"></div>
+                <div class="map-pin-dot"></div>
+                <div class="map-label">
+                  <span>🔥</span>
+                  <strong>Шашлык Армо</strong>
+                </div>
+              </div>
+            </div>
+            <div class="map-info-row">
+              <div class="map-info-item">
+                <span>📍</span>
+                <div>
+                  <strong>ул. Кавказская, 42</strong>
+                  <small>м. Центральная</small>
+                </div>
+              </div>
+              <a href="https://maps.google.com" target="_blank" class="map-route-btn">
+                Маршрут →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="footer">
+    <div class="footer-glow"></div>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-flame">🔥</span>
+            <div>
+              <span class="logo-text">АРМО</span>
+              <span class="logo-sub">ШАШЛЫК</span>
+            </div>
+          </div>
+          <p>Настоящий армянский шашлык с любовью и огнём с 2012 года. Доставка по звонку.</p>
+          <div class="footer-rating">
+            <span>★★★★★</span>
+            <span>4.9 из 5 — 1 240 отзывов</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Меню</h4>
+          <a href="#menu">Шашлыки</a>
+          <a href="#menu">Закуски</a>
+          <a href="#menu">Хлеб & Соусы</a>
+          <a href="#menu">Напитки</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <a href="#about">О нас</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#delivery">Доставка</a>
+          <a href="#contacts">Контакты</a>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a href="tel:+79991234567" class="footer-phone">+7 (999) 123-45-67</a>
+          <span class="footer-hours">Пн–Пт: 12:00–23:00</span>
+          <span class="footer-hours">Сб–Вс: 11:00–00:00</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Шашлык Армо. Все права защищены.</span>
+        <span class="footer-made">Сделано с 🔥 в 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== ПЛАВАЮЩАЯ КНОПКА ЗВОНКА ===== -->
+  <a href="tel:+79991234567" class="float-call" aria-label="Позвонить">
+    <div class="float-ring float-ring--1"></div>
+    <div class="float-ring float-ring--2"></div>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <span class="float-label">Заказать</span>
+  </a>
+
+  <!-- Модал -->
+  <div class="call-modal" id="callModal">
+    <div class="call-modal-backdrop" onclick="closeModal()"></div>
+    <div class="call-modal-box">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-fire">🔥</div>
+      <h3>Заказать доставку</h3>
+      <p>Позвоните нам — мы примем заказ и разожжём мангал прямо сейчас!</p>
+      <a href="tel:+79991234567" class="btn-fire" style="width:100%;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +7 (999) 123-45-67
+      </a>
+      <p class="modal-note">Работаем ежедневно с 10:00 до 23:00</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
