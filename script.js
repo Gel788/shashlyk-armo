@@ -40,13 +40,27 @@
   document.body.style.overflow = 'hidden';
 })();
 
-// ===== ПРОМО БАННЕР =====
+// ===== ПРОМО БАННЕР + NAVBAR ПОЗИЦИЯ =====
 const promoBanner = document.getElementById('promoBanner');
 const navbar = document.getElementById('navbar');
-if (promoBanner) {
-  navbar.classList.add('with-banner');
-  promoBanner.addEventListener('transitionend', () => {
-    navbar.classList.remove('with-banner');
+const BANNER_H = 42;
+
+function updateNavbar() {
+  const bannerVisible = promoBanner && promoBanner.style.display !== 'none';
+  const bannerH = bannerVisible ? BANNER_H : 0;
+  const scrollY = window.scrollY;
+
+  // Плавно сдвигаем навбар вверх пока баннер не прокручен
+  const newTop = Math.max(0, bannerH - scrollY);
+  navbar.style.top = newTop + 'px';
+  navbar.classList.toggle('scrolled', scrollY > bannerH);
+}
+
+// Кнопка закрытия баннера — пересчитываем позицию
+const promoBannerCloseBtn = document.querySelector('.promo-close');
+if (promoBannerCloseBtn) {
+  promoBannerCloseBtn.addEventListener('click', () => {
+    updateNavbar();
   });
 }
 
@@ -54,9 +68,8 @@ if (promoBanner) {
 const navBurger = document.getElementById('navBurger');
 const navMobile = document.getElementById('navMobile');
 
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
+window.addEventListener('scroll', updateNavbar, { passive: true });
+updateNavbar(); // инициализация при загрузке
 
 navBurger.addEventListener('click', () => {
   const isOpen = navMobile.classList.toggle('open');

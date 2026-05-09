@@ -115,10 +115,9 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white)
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  transition: var(--t);
+  position: fixed; top: 42px; left: 0; right: 0; z-index: 1000;
+  transition: top .25s ease, background .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
-.navbar.with-banner { top: 42px; }
 .navbar.scrolled {
   background: rgba(15,10,5,.94);
   backdrop-filter: blur(24px) saturate(180%);
