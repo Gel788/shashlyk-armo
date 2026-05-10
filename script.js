@@ -154,25 +154,26 @@ function buildDrinkSection(cat) {
 
 function renderMenu(data) {
   const tabsContainer = document.getElementById('menuTabs');
-  const tabsWrapper = tabsContainer ? tabsContainer.parentElement : null;
+  if (!tabsContainer) return;
 
   // Rebuild tabs
-  if (tabsContainer) {
-    tabsContainer.innerHTML = data.categories.map((cat, i) => {
-      const count = cat.items ? cat.items.filter(it => it.visible !== false).length
-                              : (cat.drink_categories ? cat.drink_categories.reduce((acc, dc) => acc + dc.items.filter(d => d.visible !== false).length, 0) : 0);
-      return `<button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${cat.id}">
-        <span class="tab-icon">${cat.icon}</span>${cat.name}
-        <span class="tab-count">${count}</span>
-      </button>`;
-    }).join('');
-  }
+  tabsContainer.innerHTML = data.categories.map((cat, i) => {
+    const count = cat.items
+      ? cat.items.filter(it => it.visible !== false).length
+      : (cat.drink_categories
+          ? cat.drink_categories.reduce((acc, dc) => acc + dc.items.filter(d => d.visible !== false).length, 0)
+          : 0);
+    return `<button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${cat.id}">
+      <span class="tab-icon">${cat.icon}</span>${cat.name}
+      <span class="tab-count">${count}</span>
+    </button>`;
+  }).join('');
 
-  // Remove old grids, rebuild
+  // Remove existing grids
   document.querySelectorAll('.menu-grid').forEach(g => g.remove());
 
-  const menuSection = document.querySelector('.menu .container');
-  const afterTabs = tabsContainer;
+  // Build and insert grids after tabsContainer
+  const frag = document.createDocumentFragment();
 
   data.categories.forEach((cat, i) => {
     const grid = document.createElement('div');
@@ -180,15 +181,18 @@ function renderMenu(data) {
 
     if (cat.id === 'drinks') {
       grid.className = 'menu-grid menu-grid--drinks' + (i === 0 ? ' active' : '');
-      grid.innerHTML = cat.drink_categories.map(buildDrinkSection).join('');
+      grid.innerHTML = (cat.drink_categories || []).map(buildDrinkSection).join('');
     } else {
       grid.className = 'menu-grid' + (i === 0 ? ' active' : '');
-      const visibleItems = cat.items.filter(it => it.visible !== false);
+      const visibleItems = (cat.items || []).filter(it => it.visible !== false);
       grid.innerHTML = visibleItems.map(item => buildCard(item, cat.id)).join('');
     }
 
-    menuSection.appendChild(grid);
+    frag.appendChild(grid);
   });
+
+  // Insert all grids right after the tabs container
+  tabsContainer.parentNode.insertBefore(frag, tabsContainer.nextSibling);
 
   // Re-bind tab events
   bindTabs();
@@ -218,14 +222,30 @@ function bindTabs() {
 }
 
 async function loadMenu() {
+  // 1. Сначала рендерим из данных, встроенных PHP (работает без сервера)
+  const inlineEl = document.getElementById('menuData');
+  if (inlineEl) {
+    try {
+      const inlineData = JSON.parse(inlineEl.textContent);
+      if (inlineData && inlineData.categories) {
+        renderMenu(inlineData);
+      }
+    } catch (e) {
+      console.warn('Ошибка парсинга встроенных данных меню:', e);
+    }
+  }
+
+  // 2. Пробуем fetch для получения актуальных данных (работает на сервере)
   try {
     const res = await fetch('menu-data.json?v=' + Date.now());
-    if (!res.ok) throw new Error('Network error');
+    if (!res.ok) return; // Используем уже отрендеренные данные
     const data = await res.json();
-    renderMenu(data);
+    // Обновляем только если данные отличаются
+    if (data && data.categories && data.updated !== (inlineEl ? JSON.parse(inlineEl.textContent).updated : null)) {
+      renderMenu(data);
+    }
   } catch (err) {
-    console.warn('menu-data.json не загружен, используем статическое меню:', err);
-    bindTabs();
+    // Нормально — уже отрендерили из inline данных
   }
 }
 

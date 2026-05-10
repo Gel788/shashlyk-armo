@@ -1,0 +1,465 @@
+<?php
+// Читаем меню из JSON и передаём в страницу
+$menuJsonPath = __DIR__ . '/menu-data.json';
+$menuJson = file_exists($menuJsonPath) ? file_get_contents($menuJsonPath) : '{"categories":[]}';
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Золотая Рыбка — Шашлык с доставкой | Мытищи, Бородино</title>
+  <meta name="description" content="Золотая Рыбка — настоящий шашлык на живом огне. МО, Мытищинский район, Осташковское шоссе, д.Бородино, д.51. Доставка: +7 (915) 055-70-55" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-bg-glow"></div>
+    <div class="preloader-inner">
+      <div class="preloader-emblem">
+        <div class="pl-ember-field" id="plEmbers"></div>
+        <div class="preloader-flames">
+          <div class="pl-flame pl-flame--1"></div>
+          <div class="pl-flame pl-flame--2"></div>
+          <div class="pl-flame pl-flame--3"></div>
+          <div class="pl-flame pl-flame--4"></div>
+          <div class="pl-flame pl-flame--5"></div>
+        </div>
+        <div class="preloader-fish-wrap">
+          <div class="preloader-fish-glow"></div>
+          <span class="preloader-fish">🐟</span>
+        </div>
+      </div>
+      <div class="preloader-brand">
+        <span class="preloader-title-top">ЗОЛОТАЯ</span>
+        <span class="preloader-title-main">РЫБКА</span>
+        <span class="preloader-title-sub">ШАШЛЫЧНАЯ</span>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill" id="preloaderFill"></div>
+      </div>
+      <p class="preloader-text">Разжигаем мангал...</p>
+    </div>
+  </div>
+
+  <!-- ===== НАВИГАЦИЯ ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-emblem">
+          <div class="logo-fire-wrap">
+            <span class="logo-flame-icon">🔥</span>
+          </div>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-text">ЗОЛОТАЯ РЫБКА</span>
+          <span class="logo-sub">ШАШЛЫЧНАЯ</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu">Меню</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#delivery">Доставка</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a href="tel:+79150557055" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Заказать звонок
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#menu">Меню</a>
+      <a href="#about">О нас</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+      <a href="tel:+79150557055" class="mobile-cta">📞 +7 (915) 055-70-55</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-video-overlay"></div>
+      <div class="ember-field" id="emberField"></div>
+      <div class="hero-noise"></div>
+      <div class="hero-vignette"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-flag">🐟</div>
+        <span>Шашлычная Золотая Рыбка — Мытищинский район</span>
+        <div class="eyebrow-live">
+          <span class="live-dot"></span>
+          Живой огонь
+        </div>
+      </div>
+      <h1 class="hero-title">
+        Шашлык,<br/>
+        <em>который<br/>помнят</em>
+      </h1>
+      <p class="hero-subtitle">
+        Сочное мясо на мангале, рыба и овощи на живых углях.
+        МО, Мытищинский район, д.Бородино — доставка по звонку.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">
+          Смотреть меню
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+79150557055" class="btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Заказать доставку
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" data-target="14" data-suffix="+">0+</span>
+          <span class="stat-label">Лет традиций</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="40" data-suffix="+">0+</span>
+          <span class="stat-label">Блюд в меню</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="15" data-suffix="к+">0к+</span>
+          <span class="stat-label">Гостей в 2026</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="4.9" data-suffix="★">0★</span>
+          <span class="stat-label">Рейтинг</span>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Листай</span>
+    </a>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="fire-divider">
+    <div class="fire-divider-inner">
+      <div class="fd-flame" style="--h:60px;--d:0s;--l:5%"></div>
+      <div class="fd-flame" style="--h:80px;--d:0.3s;--l:15%"></div>
+      <div class="fd-flame" style="--h:50px;--d:0.1s;--l:25%"></div>
+      <div class="fd-flame" style="--h:90px;--d:0.5s;--l:35%"></div>
+      <div class="fd-flame" style="--h:70px;--d:0.2s;--l:45%"></div>
+      <div class="fd-flame" style="--h:85px;--d:0.4s;--l:55%"></div>
+      <div class="fd-flame" style="--h:55px;--d:0.15s;--l:65%"></div>
+      <div class="fd-flame" style="--h:75px;--d:0.35s;--l:75%"></div>
+      <div class="fd-flame" style="--h:65px;--d:0.25s;--l:85%"></div>
+      <div class="fd-flame" style="--h:78px;--d:0.45s;--l:95%"></div>
+      <div class="fd-glow"></div>
+    </div>
+  </div>
+
+  <!-- ===== О НАС ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-aos>
+          <div class="about-img-stack">
+            <div class="about-img-bg"></div>
+            <div class="about-img-main" style="background-image: url('https://images.unsplash.com/photo-1558030006-450675393462?w=700&q=85')"></div>
+            <div class="about-img-accent" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=450&q=85')"></div>
+            <div class="about-gold-badge">
+              <div class="gold-badge-inner">
+                <span class="gold-badge-icon">🏆</span>
+                <strong>Лучший шашлык</strong>
+                <span>района 2026</span>
+              </div>
+            </div>
+            <div class="about-years-badge">
+              <span class="years-num">14</span>
+              <span class="years-text">лет<br/>традиций</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text" data-aos>
+          <div class="section-tag">Наша история</div>
+          <h2 class="section-title">Шашлык с душой —<br/><em>Золотая Рыбка</em></h2>
+          <p class="about-desc">Золотая Рыбка — это не просто шашлычная. Это место, где каждый гость чувствует настоящее гостеприимство. Готовим только из свежего мяса и рыбы на живых углях — никаких полуфабрикатов.</p>
+          <p class="about-desc">Мы находимся в живописном Мытищинском районе, д.Бородино. Маринад минимум 24 часа. Угли из фруктовых деревьев. Никаких компромиссов — только огонь и мастерство.</p>
+          <div class="about-features">
+            <div class="feature-item"><div class="feature-icon">🔥</div><div class="feature-body"><strong>Живой огонь</strong><span>Угли из яблони и вишни для аромата</span></div></div>
+            <div class="feature-item"><div class="feature-icon">🌿</div><div class="feature-body"><strong>Свежие специи</strong><span>Только натуральные пряности</span></div></div>
+            <div class="feature-item"><div class="feature-icon">🥩</div><div class="feature-body"><strong>Отборное мясо</strong><span>Охлаждённое, никогда замороженное</span></div></div>
+            <div class="feature-item"><div class="feature-icon">🐟</div><div class="feature-body"><strong>Свежая рыба</strong><span>Семга, форель, дорадо, сибас</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== МЕНЮ ===== -->
+  <section class="menu" id="menu">
+    <div class="menu-bg-pattern"></div>
+    <div class="container">
+      <div class="section-header" data-aos>
+        <div class="section-tag">Наше меню</div>
+        <h2 class="section-title">Полное меню<br/><em>шашлычной</em></h2>
+        <p class="section-subtitle">Всё готовится свежим на заказ. Без полуфабрикатов. Вес мяса указан в сыром виде.</p>
+      </div>
+
+      <!-- Вкладки и карточки загружаются динамически из menu-data.json -->
+      <div class="menu-tabs" id="menuTabs">
+        <div class="menu-loading"><div class="menu-spinner"></div><span>Загружаем меню...</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="coal-divider"><div class="coal-glow"></div></div>
+
+  <!-- ===== ДОСТАВКА ===== -->
+  <section class="delivery" id="delivery">
+    <div class="delivery-bg-mesh"></div>
+    <div class="container">
+      <div class="delivery-grid">
+        <div class="delivery-text" data-aos>
+          <div class="section-tag light">Доставка</div>
+          <h2 class="section-title light">Горячо и вовремя —<br/><em>прямо к вам</em></h2>
+          <p class="delivery-desc">Доставляем шашлык прямо с мангала в термоконтейнерах. Получаете горячим и сочным — как будто только что с огня.</p>
+          <div class="delivery-steps">
+            <div class="step" data-aos><div class="step-icon">📞</div><div class="step-num">01</div><div class="step-content"><strong>Позвоните нам</strong><span>Оператор примет заказ за 2 минуты</span></div></div>
+            <div class="step-line"></div>
+            <div class="step" data-aos><div class="step-icon">🔥</div><div class="step-num">02</div><div class="step-content"><strong>Мы готовим</strong><span>Свежий шашлык на живых углях для вас</span></div></div>
+            <div class="step-line"></div>
+            <div class="step" data-aos><div class="step-icon">🛵</div><div class="step-num">03</div><div class="step-content"><strong>Быстрая доставка</strong><span>Курьер привезёт горячим за 40–60 минут</span></div></div>
+          </div>
+          <div class="delivery-info-cards">
+            <div class="info-card"><span class="info-icon">🕐</span><strong>12:00 — 23:00</strong><span>Время доставки</span></div>
+            <div class="info-card"><span class="info-icon">📍</span><strong>До 15 км</strong><span>Зона доставки</span></div>
+            <div class="info-card"><span class="info-icon">🎁</span><strong>От 1500 ₽</strong><span>Бесплатно</span></div>
+          </div>
+          <a href="tel:+79150557055" class="btn-fire">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            +7 (915) 055-70-55
+          </a>
+        </div>
+        <div class="delivery-visual" data-aos>
+          <div class="phone-mockup">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="phone-screen-bg"></div>
+                <div class="call-ui">
+                  <div class="call-avatar">🔥</div>
+                  <div class="call-ripple"><div class="ripple r1"></div><div class="ripple r2"></div><div class="ripple r3"></div></div>
+                  <div class="call-name">Золотая Рыбка</div>
+                  <div class="call-status"><span class="blink-dot"></span>Принимаем заказы...</div>
+                  <div class="call-btns">
+                    <div class="cbtn cbtn--end"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                    <div class="cbtn cbtn--accept"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-side-btn"></div>
+            </div>
+            <div class="phone-shadow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ОТЗЫВЫ ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-header" data-aos>
+        <div class="section-tag">Отзывы</div>
+        <h2 class="section-title">Что говорят<br/><em>наши гости</em></h2>
+        <p class="section-subtitle">Более 15 000 довольных гостей в 2026 году. Мы гордимся каждым отзывом.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Лучший шашлык в районе! Мясо тает во рту, маринад идеальный. Заказываем каждые выходные.</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#ff6b35,#f7c59f)">А</div><div><strong>Алексей М.</strong><span>Постоянный гость</span></div><div class="review-platform">2ГИС ★4.9</div></div>
+        </div>
+        <div class="review-card review-card--featured" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Заказывали на корпоратив 30 человек. Всё приехало горячим! Люля-кебаб и форель — просто огонь 🔥</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#8b5cf6,#c4b5fd)">М</div><div><strong>Марина К.</strong><span>Организатор мероприятий</span></div><div class="review-platform">Google ★5.0</div></div>
+        </div>
+        <div class="review-card" data-aos>
+          <div class="review-quote">"</div>
+          <div class="review-stars">★★★★★</div>
+          <p>Отличное место! Семга на мангале — нечто особенное. Атмосфера тёплая, персонал внимательный.</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#10b981,#6ee7b7)">Н</div><div><strong>Наталья В.</strong><span>Постоянный гость</span></div><div class="review-platform">Яндекс ★5.0</div></div>
+        </div>
+      </div>
+      <div class="reviews-platforms" data-aos>
+        <div class="platform-badge"><span>⭐</span><div><strong>4.9</strong><span>Google Карты</span></div></div>
+        <div class="platform-badge"><span>⭐</span><div><strong>4.8</strong><span>Яндекс</span></div></div>
+        <div class="platform-badge"><span>⭐</span><div><strong>4.9</strong><span>2ГИС</span></div></div>
+        <div class="platform-badge"><span>⭐</span><div><strong>4.7</strong><span>TripAdvisor</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <div class="contacts-grid">
+        <div class="contacts-info" data-aos>
+          <div class="section-tag">Контакты</div>
+          <h2 class="section-title">Где нас<br/><em>найти</em></h2>
+          <div class="contact-items">
+            <a href="tel:+79150557055" class="contact-item contact-item--phone">
+              <div class="contact-icon-wrap"><div class="contact-icon">📞</div><div class="contact-pulse"></div></div>
+              <div><strong>Телефон</strong><span>+7 (915) 055-70-55</span><small>Ежедневно 10:00 – 23:00</small></div>
+              <div class="contact-arrow">→</div>
+            </a>
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><div class="contact-icon">📍</div></div>
+              <div><strong>Адрес</strong><span>Осташковское шоссе, д.Бородино, д.51</span><small>МО, Мытищинский район</small></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap"><div class="contact-icon">🕐</div></div>
+              <div><strong>Режим работы</strong><span>Пн–Пт: 12:00 – 23:00</span><small>Сб–Вс: 11:00 – 00:00</small></div>
+            </div>
+          </div>
+          <div class="social-section">
+            <p class="social-label">Мы в соцсетях</p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+              <a href="#" class="social-link" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+              <a href="#" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+              <a href="#" class="social-link" aria-label="VK"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 12.96h-1.59c-.6 0-.79-.48-1.87-1.58-.94-.92-1.36-.92-1.59-.92-.32 0-.42.09-.42.53v1.44c0 .38-.12.6-1.11.6-1.64 0-3.46-1-4.74-2.85C5.38 10.14 5 8.35 5 7.97c0-.24.09-.46.53-.46h1.59c.4 0 .55.18.7.6.77 2.22 2.05 4.17 2.58 4.17.2 0 .29-.09.29-.6V9.81c-.06-1.08-.63-1.17-.63-1.55 0-.19.15-.38.4-.38h2.5c.34 0 .46.18.46.57v3.07c0 .34.15.46.24.46.2 0 .37-.12.74-.5 1.15-1.28 1.97-3.26 1.97-3.26.1-.24.3-.46.7-.46h1.59c.48 0 .58.25.48.59-.2.92-2.15 3.69-2.15 3.69-.17.28-.23.4 0 .71.16.22.7.69 1.06 1.11.66.74 1.16 1.36 1.3 1.79.12.41-.1.62-.51.62z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="contacts-map" data-aos>
+          <div class="map-card">
+            <div class="map-visual">
+              <div class="map-grid"></div>
+              <div class="map-roads"><div class="road road-h"></div><div class="road road-v"></div><div class="road road-d"></div></div>
+              <div class="map-pin-wrap">
+                <div class="map-pulse"></div>
+                <div class="map-pin-dot"></div>
+                <div class="map-label"><span>🔥</span><strong>Золотая Рыбка</strong></div>
+              </div>
+            </div>
+            <div class="map-info-row">
+              <div class="map-info-item">
+                <span>📍</span>
+                <div><strong>Осташковское ш., д.Бородино, д.51</strong><small>МО, Мытищинский район</small></div>
+              </div>
+              <a href="https://maps.google.com/?q=Осташковское+шоссе+Бородино+51+Мытищинский+район" target="_blank" class="map-route-btn">Маршрут →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="footer">
+    <div class="footer-glow"></div>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-flame">🔥</span>
+            <div>
+              <span class="logo-text" style="font-size:1.1rem">ЗОЛОТАЯ РЫБКА</span>
+              <span class="logo-sub">ШАШЛЫЧНАЯ</span>
+            </div>
+          </div>
+          <p>Шашлык на живом огне с доставкой по Мытищинскому району. Звоните — приготовим!</p>
+          <div class="footer-rating"><span>★★★★★</span><span>4.9 из 5 — 1 240 отзывов</span></div>
+        </div>
+        <div class="footer-col">
+          <h4>Меню</h4>
+          <a href="#menu">Кебаб</a>
+          <a href="#menu">Шашлыки</a>
+          <a href="#menu">Рыба на мангале</a>
+          <a href="#menu">Гриль & Овощи</a>
+          <a href="#menu">Салаты</a>
+          <a href="#menu">Напитки</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <a href="#about">О нас</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#delivery">Доставка</a>
+          <a href="#contacts">Контакты</a>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a href="tel:+79150557055" class="footer-phone">+7 (915) 055-70-55</a>
+          <span class="footer-hours">Пн–Пт: 12:00–23:00</span>
+          <span class="footer-hours">Сб–Вс: 11:00–00:00</span>
+          <span class="footer-hours" style="margin-top:6px;color:rgba(255,255,255,.4);line-height:1.5">МО, Мытищинский р-н,<br>Осташковское ш., д.Бородино, д.51</span>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <div class="footer-legal-title">Реквизиты</div>
+        <div class="footer-legal-grid">
+          <div class="footer-legal-block"><span class="fl-label">Наименование</span><span class="fl-val">Индивидуальный предприниматель Авдеев Алексей Юрьевич</span></div>
+          <div class="footer-legal-block"><span class="fl-label">ИНН</span><span class="fl-val">771597261857</span></div>
+          <div class="footer-legal-block"><span class="fl-label">ОГРНИП</span><span class="fl-val">326508100207250</span></div>
+          <div class="footer-legal-block"><span class="fl-label">Расчётный счёт</span><span class="fl-val">40802810440070042348</span></div>
+          <div class="footer-legal-block"><span class="fl-label">Банк</span><span class="fl-val">ПАО Сбербанк</span></div>
+          <div class="footer-legal-block"><span class="fl-label">БИК банка</span><span class="fl-val">044525225</span></div>
+          <div class="footer-legal-block"><span class="fl-label">Корреспондентский счёт</span><span class="fl-val">30101810400000000225</span></div>
+          <div class="footer-legal-block"><span class="fl-label">ИНН банка</span><span class="fl-val">7707083893</span></div>
+          <div class="footer-legal-block"><span class="fl-label">КПП банка</span><span class="fl-val">773643002</span></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Золотая Рыбка. Все права защищены. ИП Авдеев А.Ю.</span>
+        <span class="footer-made">Сделано с 🔥 в 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Плавающая кнопка -->
+  <a href="tel:+79150557055" class="float-call" aria-label="Позвонить">
+    <div class="float-ring float-ring--1"></div>
+    <div class="float-ring float-ring--2"></div>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <span class="float-label">Заказать</span>
+  </a>
+
+  <!-- Модал -->
+  <div class="call-modal" id="callModal">
+    <div class="call-modal-backdrop" onclick="closeModal()"></div>
+    <div class="call-modal-box">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-fire">🔥</div>
+      <h3>Заказать доставку</h3>
+      <p>Позвоните нам — мы примем заказ и разожжём мангал прямо сейчас!</p>
+      <a href="tel:+79150557055" class="btn-fire" style="width:100%;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +7 (915) 055-70-55
+      </a>
+      <p class="modal-note">Работаем ежедневно с 10:00 до 23:00</p>
+    </div>
+  </div>
+
+  <!-- Данные меню, встроенные PHP-ом для мгновенного рендера -->
+  <script type="application/json" id="menuData"><?php echo $menuJson; ?></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
