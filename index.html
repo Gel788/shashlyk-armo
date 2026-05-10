@@ -452,6 +452,570 @@
     </div>
   </div>
 
+  <!-- Данные меню встроены для работы без сервера -->
+  <script type="application/json" id="menuData">{
+  "updated": "2026-05-10T00:00:00",
+  "categories": [
+    {
+      "id": "kebab",
+      "icon": "🔥",
+      "name": "Кебаб",
+      "items": [
+        {
+          "id": "lyulya-chicken",
+          "name": "Люля-Кебаб Куриный",
+          "price": 450,
+          "weight": "190 г",
+          "calories": "137 ккал",
+          "protein": "17г белка",
+          "description": "Сочная люля из куриного бедра со специями, лук и соус — подаётся с лавашом.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lyulya-beef",
+          "name": "Люля-Кебаб Говяжий",
+          "price": 520,
+          "weight": "190 г",
+          "calories": "209 ккал",
+          "protein": "15г белка",
+          "description": "Сочная люля из говядины со специями, лук, укроп, соус — всё в лаваше.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lyulya-lamb",
+          "name": "Люля-Кебаб Бараний",
+          "price": 550,
+          "weight": "150 г",
+          "calories": "256 ккал",
+          "protein": "12г белка",
+          "description": "Люля из баранины с бараньим жиром, луком и специями — с армянским лавашом.",
+          "badge": "exclusive",
+          "badge_text": "✨ Премиум",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lyulya-mix",
+          "name": "Люля-Кебаб Смешанный",
+          "price": 480,
+          "weight": "190 г",
+          "calories": "230 ккал",
+          "protein": "18г белка",
+          "description": "Курица + говядина + свинина: сочный смешанный фарш со специями и луком в лаваше.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "shashlik",
+      "icon": "🥩",
+      "name": "Шашлыки",
+      "items": [
+        {
+          "id": "ribs-pork",
+          "name": "Шашлык свиные рёбра",
+          "price": 800,
+          "weight": "400 г",
+          "calories": "264 ккал",
+          "protein": "7г белка",
+          "description": "Свиные рёбра с перцем, солью, луком — подаётся с соусом и армянским лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "neck-pork",
+          "name": "Шашлык свиная шея",
+          "price": 630,
+          "weight": "300 г",
+          "calories": "320 ккал",
+          "protein": "13г белка",
+          "description": "Шашлык из свиной шеи — специи, соль, лук, перец, соус и армянский лаваш.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "pulp-pork",
+          "name": "Шашлык свиная мякоть",
+          "price": 750,
+          "weight": "300 г",
+          "calories": "168 ккал",
+          "protein": "22г белка",
+          "description": "Сочный шашлык из свиной мякоти. Нежный вкус и аппетитный аромат с соусом и лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "loin-pork",
+          "name": "Шашлык свиная корейка",
+          "price": 820,
+          "weight": "200 г",
+          "calories": "",
+          "protein": "",
+          "description": "Стейк-шашлык из свиной корейки — настоящий деликатес, красивый, вкусный и питательный.",
+          "badge": "exclusive",
+          "badge_text": "🥩 Стейк",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "veal",
+          "name": "Шашлык телячья мякоть",
+          "price": 950,
+          "weight": "320 г",
+          "calories": "125 ккал",
+          "protein": "19г белка",
+          "description": "Нежный шашлык из телятины. Подаётся со специями, луком, соусом и лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lamb-pulp",
+          "name": "Шашлык баранья мякоть",
+          "price": 1280,
+          "weight": "320 г",
+          "calories": "224 ккал",
+          "protein": "18г белка",
+          "description": "Сочная баранина с пикантным красным луком и шашлычным соусом — классика в моде.",
+          "badge": "exclusive",
+          "badge_text": "✨ Премиум",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lamb-seeds",
+          "name": "Бараньи семечки",
+          "price": 850,
+          "weight": "310 г",
+          "calories": "236 ккал",
+          "protein": "14г белка",
+          "description": "Шашлык из бараньих рёбрышек. Нежный вкус с лёгкой остротой специй, лук и соус.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "lamb-rack",
+          "name": "Каре ягнёнка",
+          "price": 1108,
+          "weight": "320 г",
+          "calories": "177 ккал",
+          "protein": "8г белка",
+          "description": "Изысканное блюдо для гурманов. Сочное мясо ягнёнка до идеальной степени прожарки.",
+          "badge": "exclusive",
+          "badge_text": "👑 Премиум",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "chicken",
+      "icon": "🍗",
+      "name": "Птица",
+      "items": [
+        {
+          "id": "chicken-pulp",
+          "name": "Шашлык куриная мякоть",
+          "price": 520,
+          "weight": "320 г",
+          "calories": "116 ккал",
+          "protein": "22г белка",
+          "description": "Нежное куриное филе, красный лук, шашлычный соус и лаваш.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "chicken-wings",
+          "name": "Шашлык куриные крылья",
+          "price": 490,
+          "weight": "380 г",
+          "calories": "",
+          "protein": "",
+          "description": "Сочное мясо с румяной корочкой — подаётся с армянским лавашом и шашлычным соусом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "chicken-hearts",
+          "name": "Шашлык куриные сердечки",
+          "price": 450,
+          "weight": "320 г",
+          "calories": "197 ккал",
+          "protein": "16г белка",
+          "description": "Нежные куриные сердечки с бараньим курдюком — подаётся с ароматным лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "chicken-drumstick",
+          "name": "Шашлык куриная голень",
+          "price": 400,
+          "weight": "400 г",
+          "calories": "198 ккал",
+          "protein": "18г белка",
+          "description": "Ароматная куриная голень с луком, специями — подаётся в лаваше.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "chicken-thigh",
+          "name": "Шашлык куриные бёдра",
+          "price": 500,
+          "weight": "400 г",
+          "calories": "195 ккал",
+          "protein": "16г белка",
+          "description": "Сочные куриные бёдра со специями — подаётся с лавашом, соусом и луком.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "chicken-grill",
+          "name": "Курица Гриль целая",
+          "price": 800,
+          "weight": "1–1.5 кг",
+          "calories": "202 ккал",
+          "protein": "20г белка",
+          "description": "Целая курица тушка на гриле со специями, луком и шашлычным соусом.",
+          "badge": "new",
+          "badge_text": "🔥 Гриль",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "grill",
+      "icon": "🌶️",
+      "name": "Гриль & Овощи",
+      "items": [
+        {
+          "id": "veggie-mix",
+          "name": "Микс овощей на углях",
+          "price": 350,
+          "weight": "240 г",
+          "calories": "36 ккал",
+          "protein": "6г углев.",
+          "description": "Болгарский перец, кабачок, баклажан, помидор на мангале — на лаваше.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "pepper",
+          "name": "Болгарский перец на углях",
+          "price": 300,
+          "weight": "1 шт",
+          "calories": "15 ккал",
+          "protein": "",
+          "description": "Болгарский перец, запечённый до золотой корочки на углях — соль, перец.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "veggie-assorted",
+          "name": "Ассорти овощей на углях",
+          "price": 850,
+          "weight": "500 г",
+          "calories": "190 ккал",
+          "protein": "",
+          "description": "Армянский перец, помидор, болгарский перец, баклажан — отличное сочетание вкусов.",
+          "badge": "exclusive",
+          "badge_text": "🎯 Ассорти",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "mushrooms",
+          "name": "Шампиньоны на углях",
+          "price": 320,
+          "weight": "300 г",
+          "calories": "35 ккал",
+          "protein": "5г белка",
+          "description": "Нежные ароматные грибы с пикантным чесночным соусом и армянским лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "baby-potato",
+          "name": "Картофель БЕБИ на углях",
+          "price": 260,
+          "weight": "300 г",
+          "calories": "77 ккал",
+          "protein": "16г углев.",
+          "description": "Молодой картофель, запечённый на углях до ароматной корочки — на лаваше.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "fish",
+      "icon": "🐟",
+      "name": "Рыба",
+      "items": [
+        {
+          "id": "salmon",
+          "name": "Семга на мангале",
+          "price": 1230,
+          "weight": "280 г",
+          "calories": "126 ккал",
+          "protein": "7г жиров",
+          "description": "Нежный стейк из семги с лимоном и соусом Наршараб — с армянским лавашом.",
+          "badge": "popular",
+          "badge_text": "🐟 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "trout",
+          "name": "Форель на мангале",
+          "price": 1150,
+          "weight": "450 г",
+          "calories": "165 ккал",
+          "protein": "25г белка",
+          "description": "Нежная форель с головой, соус Наршараб и долька лимона — для ценителей изысканного.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "dorado",
+          "name": "Дорадо на мангале",
+          "price": 1130,
+          "weight": "450 г",
+          "calories": "280 ккал",
+          "protein": "20г белка",
+          "description": "Сочная ароматная рыба на мангале. Наршараб придаёт пикантность — с лимоном и лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "seabass",
+          "name": "Сибас на мангале",
+          "price": 1150,
+          "weight": "450 г",
+          "calories": "250 ккал",
+          "protein": "22г белка",
+          "description": "Сочная мягкая рыба на мангале с пикантным соусом, лимоном и лавашом.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "fish-assorted",
+          "name": "Рыбное ассорти",
+          "price": 4300,
+          "weight": "1 500 г",
+          "calories": "229 ккал",
+          "protein": "",
+          "description": "Форель, семга, дорадо на огне. Печёный перец, лимон, соус Наршараб и лаваш. Сет на 2–4 чел.",
+          "badge": "exclusive",
+          "badge_text": "🎯 Сет 2–4 чел",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "salads",
+      "icon": "🥗",
+      "name": "Салаты",
+      "items": [
+        {
+          "id": "caesar-shrimp",
+          "name": "Цезарь с тигровыми креветками",
+          "price": 580,
+          "weight": "280 г",
+          "calories": "154 ккал",
+          "protein": "11г белка",
+          "description": "Айсберг, тигровые креветки, гренки, пармезан, фирменный соус Цезарь.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "veggie-salad",
+          "name": "Овощной салат",
+          "price": 300,
+          "weight": "200 г",
+          "calories": "70 ккал",
+          "protein": "6г жиров",
+          "description": "Помидор, огурец, зелень, оливковое масло — свежий и аппетитный.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "greek-salad",
+          "name": "Греческий салат",
+          "price": 430,
+          "weight": "250 г",
+          "calories": "153 ккал",
+          "protein": "14г жиров",
+          "description": "Помидоры, огурцы, болгарский перец, маслины, оливки, сыр фета и оливковое масло.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "caesar-chicken",
+          "name": "Цезарь с курицей",
+          "price": 480,
+          "weight": "280 г",
+          "calories": "84 ккал",
+          "protein": "7г белка",
+          "description": "Айсберг, куриная грудка, черри, пармезан, гренки и соус Цезарь.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "bread",
+      "icon": "🫓",
+      "name": "Хлеб",
+      "items": [
+        {
+          "id": "lavash-small",
+          "name": "Лаваш маленький",
+          "price": 40,
+          "weight": "115 г",
+          "calories": "",
+          "protein": "",
+          "description": "Тонкий армянский лаваш из дрожжевого теста, выпечённый прямо у вас на глазах.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "matnakash",
+          "name": "Матнакаш",
+          "price": 80,
+          "weight": "",
+          "calories": "",
+          "protein": "",
+          "description": "Армянский хлеб матнакаш — мягкий, пышный, с хрустящей корочкой.",
+          "badge": "popular",
+          "badge_text": "🔥 Хит",
+          "image": "",
+          "visible": true
+        },
+        {
+          "id": "shawarma-lavash",
+          "name": "Шаурма лаваш",
+          "price": 30,
+          "weight": "1 шт",
+          "calories": "",
+          "protein": "",
+          "description": "Лаваш для шаурмы — 1 штука.",
+          "badge": "",
+          "badge_text": "",
+          "image": "",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "icon": "🥤",
+      "name": "Напитки",
+      "drink_categories": [
+        {
+          "title": "☕ Горячие напитки",
+          "items": [
+            { "id": "tea-black", "name": "Чай чёрный (пакетик)", "volume": "2 г", "price": 80, "visible": true },
+            { "id": "tea-green", "name": "Чай зелёный (пакетик)", "volume": "2 г", "price": 80, "visible": true },
+            { "id": "tea-fruit", "name": "Чай фруктовый (пакетик)", "volume": "2 г", "price": 80, "visible": true },
+            { "id": "coffee-instant", "name": "Кофе растворимый чёрный", "volume": "10 г", "price": 120, "visible": true },
+            { "id": "coffee-americano", "name": "Кофе Американо (зерновой)", "volume": "0,2 л", "price": 180, "visible": true }
+          ]
+        },
+        {
+          "title": "💧 Вода и напитки",
+          "items": [
+            { "id": "water-still", "name": "Nestle Pure Life без газа", "volume": "0,5 л", "price": 120, "visible": true },
+            { "id": "water-sparkling", "name": "Nestle Pure Life с газом", "volume": "0,5 л", "price": 120, "visible": true },
+            { "id": "water-fahrenheit", "name": "Фаренгейт РН 9,5", "volume": "0,5 л", "price": 120, "visible": true },
+            { "id": "drink-lemon", "name": "Фаренгейт Витами лимон-лайм", "volume": "0,5 л", "price": 160, "visible": true },
+            { "id": "drink-berry", "name": "Фаренгейт Клубника-смородина", "volume": "0,5 л", "price": 160, "visible": true },
+            { "id": "tan", "name": "ТАН (кисломолочный)", "volume": "—", "price": 0, "visible": true }
+          ]
+        },
+        {
+          "title": "🍺 Пиво и сидр",
+          "items": [
+            { "id": "beer-zhig-b", "name": "Жигули Бархатное", "volume": "0,45 бут.", "price": 160, "visible": true },
+            { "id": "beer-zhig-e", "name": "Жигули Экспорт Бар", "volume": "0,45 бут.", "price": 160, "visible": true },
+            { "id": "beer-holland", "name": "Голландия", "volume": "0,45 бут.", "price": 180, "visible": true },
+            { "id": "beer-holland-w", "name": "Голландия белое", "volume": "0,45 л", "price": 184, "visible": true },
+            { "id": "beer-cherry", "name": "Пиво ВП Вишня", "volume": "0,45 банка", "price": 190, "visible": true },
+            { "id": "beer-non-alc", "name": "Пиво Барное б/а", "volume": "0,45 банка", "price": 150, "visible": true },
+            { "id": "cider-hoppy", "name": "Сидр Хоппи Сидр игристый", "volume": "0,45 л", "price": 300, "visible": true },
+            { "id": "cider-watermelon", "name": "Сидр Арбуз игристый", "volume": "0,45 банка", "price": 310, "visible": true }
+          ]
+        },
+        {
+          "title": "🧃 Соки, квас и другое",
+          "items": [
+            { "id": "kvas", "name": "Квас И.И. Обломов", "volume": "0,45 банка", "price": 140, "visible": true },
+            { "id": "juice-apple", "name": "Сок WIZ Яблоко Apple", "volume": "0,2 бут.", "price": 120, "visible": true },
+            { "id": "juice-cherry", "name": "Сок WIZ Вишня Chery", "volume": "0,2 бут.", "price": 130, "visible": true },
+            { "id": "juice-orange", "name": "Сок WIZ Апельсин Orange", "volume": "0,2 бут.", "price": 130, "visible": true },
+            { "id": "juice-tomato", "name": "Сок WIZ Томат Tomato", "volume": "0,2 бут.", "price": 120, "visible": true },
+            { "id": "volchok-grape", "name": "Волчок Грейп-Гибискус", "volume": "0,45 л", "price": 170, "visible": true },
+            { "id": "volchok-watermelon", "name": "Волчок Арбуз", "volume": "0,45 л", "price": 170, "visible": true }
+          ]
+        }
+      ]
+    }
+  ]
+}</script>
+
   <script src="script.js"></script>
 </body>
 </html>
