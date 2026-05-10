@@ -8,7 +8,6 @@
   const fill = document.getElementById('preloaderFill');
   const plEmbers = document.getElementById('plEmbers');
 
-  // Создаём угольки в прелоадере
   for (let i = 0; i < 20; i++) {
     const e = document.createElement('div');
     e.className = 'ember';
@@ -40,7 +39,7 @@
   document.body.style.overflow = 'hidden';
 })();
 
-// ===== NAVBAR СКРОЛЛ (без промо-баннера) =====
+// ===== NAVBAR СКРОЛЛ =====
 const navbar = document.getElementById('navbar');
 const navBurger = document.getElementById('navBurger');
 const navMobile = document.getElementById('navMobile');
@@ -90,21 +89,147 @@ navMobile.querySelectorAll('a').forEach(a => {
   }
 })();
 
-// ===== ВКЛАДКИ МЕНЮ =====
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tabId = btn.dataset.tab;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.menu-grid').forEach(g => g.classList.remove('active'));
-    btn.classList.add('active');
-    const target = document.getElementById('tab-' + tabId);
-    if (target) {
-      target.classList.add('active');
-      target.querySelectorAll('[data-aos]').forEach(el => el.classList.remove('aos-visible'));
-      setTimeout(checkAos, 60);
+// ===== ЗАГРУЗКА И РЕНДЕР МЕНЮ =====
+const DEFAULT_IMAGES = {
+  kebab:   'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=80',
+  shashlik:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80',
+  chicken: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=80',
+  grill:   'https://images.unsplash.com/photo-1571167530149-c1105da4b1f4?w=500&q=80',
+  fish:    'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&q=80',
+  salads:  'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&q=80',
+  bread:   'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80',
+  drinks:  'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80'
+};
+
+function formatPrice(price) {
+  if (!price) return 'по запросу';
+  return price.toLocaleString('ru-RU') + ' ₽';
+}
+
+function buildCard(item, categoryId) {
+  const imgSrc = item.image || DEFAULT_IMAGES[categoryId] || DEFAULT_IMAGES.kebab;
+  const badge = item.badge && item.badge_text
+    ? `<div class="card-badge ${item.badge}">${item.badge_text}</div>`
+    : '';
+  const metaParts = [];
+  if (item.weight) metaParts.push(`<span>⚖️ ${item.weight}</span>`);
+  if (item.calories) metaParts.push(`<span>🔥 ${item.calories}</span>`);
+  if (item.protein) metaParts.push(`<span>🥩 ${item.protein}</span>`);
+  const meta = metaParts.length ? `<div class="card-meta">${metaParts.join('')}</div>` : '';
+
+  return `
+    <div class="menu-card${item.badge === 'exclusive' ? ' menu-card--wild' : ''}" data-aos>
+      <div class="card-img-wrap">
+        <div class="card-img" style="background-image:url('${imgSrc}')"></div>
+        ${badge}
+        <div class="card-img-shine"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <h3>${item.name}</h3>
+          <span class="card-price">${formatPrice(item.price)}</span>
+        </div>
+        <p class="card-desc">${item.description}</p>
+        ${meta}
+        <button class="card-btn" onclick="callOrder()">Заказать</button>
+      </div>
+    </div>`;
+}
+
+function buildDrinkSection(cat) {
+  const items = cat.items
+    .filter(d => d.visible !== false)
+    .map(d => `
+      <div class="drink-item" onclick="callOrder()">
+        <span class="drink-name">${d.name}</span>
+        <span class="drink-vol">${d.volume || '—'}</span>
+        <span class="drink-price">${d.price ? formatPrice(d.price) : 'по запросу'}</span>
+      </div>`).join('');
+  return `
+    <div class="drink-category" data-aos>
+      <div class="drink-cat-title">${cat.title}</div>
+      <div class="drink-list">${items}</div>
+    </div>`;
+}
+
+function renderMenu(data) {
+  const tabsContainer = document.getElementById('menuTabs');
+  const tabsWrapper = tabsContainer ? tabsContainer.parentElement : null;
+
+  // Rebuild tabs
+  if (tabsContainer) {
+    tabsContainer.innerHTML = data.categories.map((cat, i) => {
+      const count = cat.items ? cat.items.filter(it => it.visible !== false).length
+                              : (cat.drink_categories ? cat.drink_categories.reduce((acc, dc) => acc + dc.items.filter(d => d.visible !== false).length, 0) : 0);
+      return `<button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${cat.id}">
+        <span class="tab-icon">${cat.icon}</span>${cat.name}
+        <span class="tab-count">${count}</span>
+      </button>`;
+    }).join('');
+  }
+
+  // Remove old grids, rebuild
+  document.querySelectorAll('.menu-grid').forEach(g => g.remove());
+
+  const menuSection = document.querySelector('.menu .container');
+  const afterTabs = tabsContainer;
+
+  data.categories.forEach((cat, i) => {
+    const grid = document.createElement('div');
+    grid.id = 'tab-' + cat.id;
+
+    if (cat.id === 'drinks') {
+      grid.className = 'menu-grid menu-grid--drinks' + (i === 0 ? ' active' : '');
+      grid.innerHTML = cat.drink_categories.map(buildDrinkSection).join('');
+    } else {
+      grid.className = 'menu-grid' + (i === 0 ? ' active' : '');
+      const visibleItems = cat.items.filter(it => it.visible !== false);
+      grid.innerHTML = visibleItems.map(item => buildCard(item, cat.id)).join('');
     }
+
+    menuSection.appendChild(grid);
   });
-});
+
+  // Re-bind tab events
+  bindTabs();
+  // Trigger AOS for visible items
+  setTimeout(checkAos, 100);
+}
+
+function bindTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.menu-grid').forEach(g => g.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) {
+        target.classList.add('active');
+        target.querySelectorAll('[data-aos]').forEach(el => el.classList.remove('aos-visible'));
+        setTimeout(checkAos, 60);
+        // Smooth scroll to menu section on mobile
+        if (window.innerWidth < 768) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    });
+  });
+}
+
+async function loadMenu() {
+  try {
+    const res = await fetch('menu-data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Network error');
+    const data = await res.json();
+    renderMenu(data);
+  } catch (err) {
+    console.warn('menu-data.json не загружен, используем статическое меню:', err);
+    bindTabs();
+  }
+}
+
+loadMenu();
 
 // ===== AOS =====
 function checkAos() {
@@ -175,8 +300,8 @@ document.addEventListener('mousemove', e => {
     card.style.transform = `translateY(-10px) perspective(900px) rotateX(${-y * .4}deg) rotateY(${x * .4}deg)`;
   });
 });
-document.querySelectorAll('.menu-card').forEach(card => {
-  card.addEventListener('mouseleave', () => card.style.transform = '');
+document.addEventListener('mouseleave', () => {
+  document.querySelectorAll('.menu-card').forEach(card => card.style.transform = '');
 });
 
 // ===== МОДАЛ ЗВОНКА =====

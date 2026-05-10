@@ -465,9 +465,13 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white)
 .tab-btn .tab-icon { font-size: 1rem; }
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { background: var(--white); color: var(--fire); font-weight: 700; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+.tab-count { font-size: .68rem; font-weight: 700; background: rgba(255,107,53,.12); color: var(--fire); padding: 1px 6px; border-radius: 20px; min-width: 18px; text-align: center; }
 
 .menu-grid { display: none; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .menu-grid.active { display: grid; animation: fadeIn .4s ease; }
+.menu-loading { display: flex; align-items: center; gap: 12px; padding: 16px 0; color: var(--text-muted); font-size: .85rem; }
+.menu-spinner { width: 20px; height: 20px; border: 2px solid rgba(255,107,53,.2); border-top-color: var(--fire); border-radius: 50%; animation: spinLoader .7s linear infinite; }
+@keyframes spinLoader { to { transform: rotate(360deg); } }
 
 .menu-card {
   background: var(--white); border-radius: var(--r-xl); overflow: hidden;
