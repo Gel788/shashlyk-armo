@@ -134,7 +134,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white)
 .logo-fire-wrap { display: flex; align-items: center; justify-content: center; }
 .logo-flame-icon { font-size: 1.8rem; animation: flamePulse 2s ease-in-out infinite; }
 .logo-text-wrap { display: flex; flex-direction: column; line-height: 1; }
-.logo-text { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white); letter-spacing: .08em; }
+.logo-text { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: .06em; line-height: 1.1; }
 .logo-sub { font-size: .6rem; color: rgba(255,107,53,.8); letter-spacing: .2em; text-transform: uppercase; margin-top: 1px; }
 
 .nav-links { display: flex; list-style: none; gap: 28px; flex: 1; justify-content: center; }
@@ -369,7 +369,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white)
 /* ===== О НАС ===== */
 .about { padding: 100px 0; background: var(--cream); position: relative; overflow: hidden; }
 .about::after {
-  content: 'АРМО'; position: absolute; top: -30px; right: -60px;
+  content: 'РЫБКА'; position: absolute; top: -30px; right: -60px;
   font-family: 'Oswald', sans-serif; font-size: 20rem; font-weight: 700;
   color: rgba(255,107,53,.035); line-height: 1; pointer-events: none; user-select: none;
 }
@@ -750,6 +750,25 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white)
 .footer-col a:hover { color: var(--fire); }
 .footer-phone { font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--fire) !important; }
 .footer-hours { font-size: .8rem; color: rgba(255,255,255,.35); }
+/* Реквизиты */
+.footer-legal {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 28px 0 24px;
+}
+.footer-legal-title {
+  font-size: .68rem; font-weight: 700; color: rgba(255,255,255,.25);
+  text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px;
+}
+.footer-legal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px 32px;
+}
+.footer-legal-block { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.fl-label { font-size: .7rem; color: rgba(255,255,255,.3); white-space: nowrap; flex-shrink: 0; }
+.fl-label::after { content: ':'; }
+.fl-val { font-size: .76rem; color: rgba(255,255,255,.55); font-variant-numeric: tabular-nums; }
+
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
   padding: 20px 0; font-size: .76rem; color: rgba(255,255,255,.25);

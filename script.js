@@ -226,5 +226,5 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ===== КОНСОЛЬ =====
-console.log('%c🔥 Шашлык АРМО — 2026 🔥', 'font-size:22px;font-weight:700;color:#ff6b35;');
-console.log('%c+7 (999) 123-45-67  |  Доставка по звонку', 'font-size:13px;color:#f4a261;');
+console.log('%c🔥 Золотая Рыбка — Шашлычная 2026 🔥', 'font-size:22px;font-weight:700;color:#ff6b35;');
+console.log('%c+7 (915) 055-70-55  |  МО, Мытищинский р-н, д.Бородино, д.51', 'font-size:13px;color:#f4a261;');
