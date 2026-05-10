@@ -310,19 +310,21 @@ window.addEventListener('scroll', () => {
   heroContent.style.opacity = Math.max(0, 1 - sy / 650);
 }, { passive: true });
 
-// ===== 3D КАРТОЧКИ МЕНЮ =====
-document.addEventListener('mousemove', e => {
-  document.querySelectorAll('.menu-card').forEach(card => {
-    const rect = card.getBoundingClientRect();
-    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
-    const x = ((e.clientX - rect.left) / rect.width - .5) * 10;
-    const y = ((e.clientY - rect.top) / rect.height - .5) * 10;
-    card.style.transform = `translateY(-10px) perspective(900px) rotateX(${-y * .4}deg) rotateY(${x * .4}deg)`;
+// ===== 3D КАРТОЧКИ МЕНЮ (только десктоп) =====
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    document.querySelectorAll('.menu-card').forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+      const x = ((e.clientX - rect.left) / rect.width - .5) * 10;
+      const y = ((e.clientY - rect.top) / rect.height - .5) * 10;
+      card.style.transform = `translateY(-10px) perspective(900px) rotateX(${-y * .4}deg) rotateY(${x * .4}deg)`;
+    });
   });
-});
-document.addEventListener('mouseleave', () => {
-  document.querySelectorAll('.menu-card').forEach(card => card.style.transform = '');
-});
+  document.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.menu-card').forEach(card => card.style.transform = '');
+  });
+}
 
 // ===== МОДАЛ ЗВОНКА =====
 function callOrder() {
