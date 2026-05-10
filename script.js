@@ -1,5 +1,5 @@
 /* =============================================
-   ШАШЛЫК АРМО v2.0 — script.js
+   ЗОЛОТАЯ РЫБКА — Шашлычная v3.0 — 2026
    ============================================= */
 
 // ===== PRELOADER =====
@@ -40,36 +40,15 @@
   document.body.style.overflow = 'hidden';
 })();
 
-// ===== ПРОМО БАННЕР + NAVBAR ПОЗИЦИЯ =====
-const promoBanner = document.getElementById('promoBanner');
+// ===== NAVBAR СКРОЛЛ (без промо-баннера) =====
 const navbar = document.getElementById('navbar');
-const BANNER_H = 42;
-
-function updateNavbar() {
-  const bannerVisible = promoBanner && promoBanner.style.display !== 'none';
-  const bannerH = bannerVisible ? BANNER_H : 0;
-  const scrollY = window.scrollY;
-
-  // Плавно сдвигаем навбар вверх пока баннер не прокручен
-  const newTop = Math.max(0, bannerH - scrollY);
-  navbar.style.top = newTop + 'px';
-  navbar.classList.toggle('scrolled', scrollY > bannerH);
-}
-
-// Кнопка закрытия баннера — пересчитываем позицию
-const promoBannerCloseBtn = document.querySelector('.promo-close');
-if (promoBannerCloseBtn) {
-  promoBannerCloseBtn.addEventListener('click', () => {
-    updateNavbar();
-  });
-}
-
-// ===== NAVBAR СКРОЛЛ =====
 const navBurger = document.getElementById('navBurger');
 const navMobile = document.getElementById('navMobile');
 
-window.addEventListener('scroll', updateNavbar, { passive: true });
-updateNavbar(); // инициализация при загрузке
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+navbar.classList.toggle('scrolled', window.scrollY > 40);
 
 navBurger.addEventListener('click', () => {
   const isOpen = navMobile.classList.toggle('open');
